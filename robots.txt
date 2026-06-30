@@ -1,0 +1,23 @@
+# robots.txt — AGM | The Cool Consultant
+User-agent: *
+Allow: /
+
+# Reputable AI crawlers explicitly welcomed (AEO/GEO visibility)
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.agmqatar.com/sitemap.xml
