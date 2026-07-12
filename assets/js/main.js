@@ -3,17 +3,25 @@
   "use strict";
 
   // ====== Google Ads conversion tracking ======
-  // Account 850-424-2511. Fill the three labels from Google Ads → Conversions.
-  // Until a real label is set, fires are skipped automatically (no errors).
+  // Google tag ID AW-18281315101 (Ads account 850-424-2511).
+  // Fill the three labels from Google Ads → Data manager. Fires are skipped until real labels are set.
   var ADS = {
-    id: "AW-8504242511",        // Google Ads tag ID (= account number without dashes)
+    id: "AW-18281315101",       // Google tag ID
     lead: "LEAD_FORM_LABEL",    // "Submit lead form" conversion label
     call: "CALL_LABEL",         // "Phone call clicks" conversion label
     whatsapp: "WHATSAPP_LABEL"  // "WhatsApp clicks" conversion label
   };
+  // Load + activate the real Google tag on every page (works even if the <head> still has a placeholder ID)
+  window.dataLayer = window.dataLayer || [];
+  if (typeof window.gtag !== "function") { window.gtag = function () { window.dataLayer.push(arguments); }; }
+  if (!document.querySelector('script[src*="gtag/js?id=' + ADS.id + '"]')) {
+    var _gt = document.createElement("script"); _gt.async = true;
+    _gt.src = "https://www.googletagmanager.com/gtag/js?id=" + ADS.id;
+    document.head.appendChild(_gt);
+  }
+  window.gtag("js", new Date());
+  window.gtag("config", ADS.id);
   function gtagReady() { return typeof window.gtag === "function"; }
-  // Activate the Ads tag on every page (gtag library is loaded by the inline tag in <head>)
-  if (gtagReady()) { try { window.gtag("config", ADS.id); } catch (e) {} }
   function fireConversion(label) {
     if (!label || /_LABEL$/.test(label) || !gtagReady()) return; // skip until real label set
     try { window.gtag("event", "conversion", { send_to: ADS.id + "/" + label }); } catch (e) {}
