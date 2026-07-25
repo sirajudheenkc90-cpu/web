@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google tag (gtag.js) — REPLACE G-XXXXXXXXXX with your GA4 / Google Ads ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google tag (gtag.js) — REPLACE AW-18281315101 with your GA4 / Google Ads ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18281315101"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);} 
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'AW-18281315101');
 </script>
 <title>Privacy Policy — AGM | The Cool Consultant</title>
 <meta name="description" content="Privacy Policy for AGM | The Cool Consultant, HVAC contractor in Doha, Qatar. How we collect, use and protect the information you submit through our website.">
@@ -99,5 +99,17 @@
 
 <a href="https://wa.me/97477071657" class="float-wa" aria-label="Chat on WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24z"/></svg></a>
 <script src="assets/js/main.js"></script>
+<!-- Google Ads WhatsApp click conversion tracking -->
+<script>
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (/wa\.me|api\.whatsapp\.com/i.test(link.href)) {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18281315101/zj8HCMG2p9YcEJ32mo1E'
+      });
+    }
+  }, true);
+</script>
 </body>
 </html>
