@@ -9,7 +9,7 @@
     id: "AW-18281315101",       // Google tag ID
     lead: "LEAD_FORM_LABEL",    // "Submit lead form" conversion label
     call: "CALL_LABEL",         // "Phone call clicks" conversion label
-    whatsapp: "WHATSAPP_LABEL"  // "WhatsApp clicks" conversion label
+    whatsapp: "zj8HCMG2p9YcEJ32mo1E"  // "WhatsApp clicks" conversion label
   };
   // Load + activate the real Google tag on every page (works even if the <head> still has a placeholder ID)
   window.dataLayer = window.dataLayer || [];
@@ -22,9 +22,14 @@
   window.gtag("js", new Date());
   window.gtag("config", ADS.id);
   function gtagReady() { return typeof window.gtag === "function"; }
-  function fireConversion(label) {
-    if (!label || /_LABEL$/.test(label) || !gtagReady()) return; // skip until real label set
-    try { window.gtag("event", "conversion", { send_to: ADS.id + "/" + label }); } catch (e) {}
+  function fireConversion(label, url) {
+    if (!label || /_LABEL$/.test(label) || !gtagReady()) { if (url) window.location.href = url; return; }
+    var didRedirect = false;
+    var go = function () { if (!didRedirect && url) { didRedirect = true; window.location.href = url; } };
+    try {
+      window.gtag("event", "conversion", { send_to: ADS.id + "/" + label, transport_type: "beacon", event_callback: go });
+    } catch (e) { go(); }
+    setTimeout(go, 800);
   }
 
   // Header shadow on scroll
@@ -145,11 +150,11 @@
 
   // Phone-call click conversions (site-wide)
   document.querySelectorAll('a[href^="tel:"]').forEach(function (el) {
-    el.addEventListener("click", function () { fireConversion(ADS.call); });
+    el.addEventListener("click", function (e) { e.preventDefault(); fireConversion(ADS.call, el.href); });
   });
   // WhatsApp click conversions (site-wide)
   document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach(function (el) {
-    el.addEventListener("click", function () { fireConversion(ADS.whatsapp); });
+    el.addEventListener("click", function (e) { e.preventDefault(); fireConversion(ADS.whatsapp, el.href); });
   });
   // Lead-form conversion fires once on the thank-you page
   if (/thank-you/.test(window.location.pathname)) { fireConversion(ADS.lead); }
