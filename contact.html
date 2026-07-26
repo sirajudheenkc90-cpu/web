@@ -11,13 +11,13 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google tag (gtag.js) — REPLACE G-XXXXXXXXXX with your GA4 / Google Ads ID -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google tag (gtag.js) — REPLACE AW-18281315101 with your GA4 / Google Ads ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18281315101"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'AW-18281315101');
 </script>
 <title>Contact AGM | Request an HVAC Quote in Qatar | The Cool Consultant</title>
 <meta name="description" content="Contact AGM | The Cool Consultant for HVAC installation, design and maintenance in Qatar. Call +974 7707 1657, WhatsApp us, or request a free quote online.">
@@ -142,5 +142,17 @@
   <a href="contact.html" class="btn btn-primary">Quote</a>
 </div>
 <script src="assets/js/main.js?v=3"></script>
+<!-- Google Ads WhatsApp click conversion tracking -->
+<script>
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link || !link.href) return;
+    if (/wa\.me|api\.whatsapp\.com/i.test(link.href)) {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18281315101/zj8HCMG2p9YcEJ32mo1E'
+      });
+    }
+  }, true);
+</script>
 </body>
 </html>
