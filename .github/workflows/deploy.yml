@@ -1,0 +1,42 @@
+name: Deploy site to VPS (nginx)
+
+# Publishes the static site to the DigitalOcean Droplet web root via rsync over SSH.
+# Triggers on every push to master, and can be run manually from the Actions tab.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy with rsync over SSH
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          # No --delete by default: safe for partial pushes (won't wipe the live site).
+          # To mirror exactly, add --delete AND keep the .well-known + nginx excludes below,
+          # e.g. switches: -avz --delete
+          switches: >-
+            -avz
+            --exclude='.git'
+            --exclude='.git/'
+            --exclude='.github'
+            --exclude='.github/'
+            --exclude='.well-known/'
+            --exclude='*.md'
+            --exclude='nginx-*.conf'
+            --exclude='terms.zip'
+          path: ./
+          remote_path: ${{ secrets.SERVER_PATH }}
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_port: ${{ secrets.SSH_PORT }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
