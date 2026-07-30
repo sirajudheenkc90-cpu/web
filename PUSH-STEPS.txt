@@ -1,0 +1,66 @@
+========================================================
+PUSH THE 7 NEW HVAC PAGES TO GITHUB  (do this on your PC)
+========================================================
+Repo:   https://github.com/sirajudheenkc90-cpu/web  (branch: master)
+Folder: C:\Users\User\Documents\claude operation\agmwebf
+
+--------------------------------------------------------
+STEP 1 — Delete the stuck lock file
+--------------------------------------------------------
+- Open File Explorer.
+- Paste this into the address bar and press Enter:
+      C:\Users\User\Documents\claude operation\agmwebf\.git
+  (If the .git folder is hidden: View -> Show -> Hidden items.)
+- Delete the file named:   index.lock
+  (It's a leftover from an interrupted commit. Safe to delete.)
+
+--------------------------------------------------------
+STEP 2 — Open a command window in the project folder
+--------------------------------------------------------
+- Go back to:  C:\Users\User\Documents\claude operation\agmwebf
+- Click the address bar, type:  cmd   then press Enter.
+  (A black window opens, already pointed at the folder.)
+
+--------------------------------------------------------
+STEP 3 — Run these 3 commands (one at a time, Enter after each)
+--------------------------------------------------------
+git add commercial-hvac-maintenance-qatar.html chiller-maintenance-qatar.html residential-ac-installation-qatar.html ac-maintenance-company-qatar.html vrf-installation-qatar.html ventilation-systems-qatar.html hvac-contractor-qatar.html sitemap.xml
+
+git commit -m "Add 7 HVAC landing pages + sitemap entries"
+
+git push origin master
+
+- If a sign-in window pops up, log in to GitHub once; the push continues.
+
+--------------------------------------------------------
+IF "git" IS NOT RECOGNIZED  ->  use GitHub Desktop instead
+--------------------------------------------------------
+- Open GitHub Desktop (File -> Add local repository -> select this folder if needed).
+- The 7 .html files + sitemap.xml appear under "Changes".
+- Summary:  Add 7 HVAC landing pages + sitemap entries
+- Click "Commit to master", then click "Push origin".
+
+--------------------------------------------------------
+STEP 4 — Verify
+--------------------------------------------------------
+- Open: https://github.com/sirajudheenkc90-cpu/web
+- Confirm the 7 files show with a fresh commit time.
+
+--------------------------------------------------------
+STEP 5 — Hand off to the browser agent
+--------------------------------------------------------
+- Tell the browser agent: "pushed".
+- It will verify the repo + sitemap slugs.
+- Then YOU add the 5 GitHub Secrets (Settings -> Secrets and variables -> Actions):
+      SSH_HOST         = your Droplet public IPv4
+      SSH_USER         = root
+      SSH_PORT         = 22
+      SSH_PRIVATE_KEY  = your Droplet SSH private key (full text)
+      SERVER_PATH      = /var/www/html
+- Then the browser agent runs deploy.yml and checks the live page.
+
+Files already verified correct on your disk:
+  - real Google Ads tag AW-18281315101 on all 7 pages
+  - WhatsApp click-conversion wired (4 buttons per page)
+  - sitemap.xml contains all 7 new slugs
+========================================================
